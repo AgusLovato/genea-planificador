@@ -1,0 +1,66 @@
+country_code,puesto,país,segmento,puntaje,puesto mediano,prob. top 10,prioridad,países puente
+US,1,United States,Conectados y diversos,100.0,1.0,1.0,Prioridad 1,"MX, CO, ES"
+FR,2,France,"Orígenes diversos, apellidos locales",97.55839106690156,2.0,0.9868,Prioridad 1,"ES, US, PT"
+CA,3,Canada,Conectados y diversos,92.38246424631573,3.0,1.0,Prioridad 1,"GB, US, AE"
+AE,4,United Arab Emirates,Conectados y diversos,82.07952453331258,6.0,0.7528,Prioridad 1,"KW, QA, BH"
+ES,5,Spain,Conectados y diversos,81.35853248956207,8.0,0.7646,Prioridad 1,"MX, CO, AR"
+BR,6,Brazil,Conectados y diversos,80.47796053580697,8.0,0.6556,Prioridad 1,"PT, MU, CH"
+DE,7,Germany,Maduros con apellidos propios,80.1430586899871,8.0,0.619,Prioridad 1,CH
+CH,8,Switzerland,Conectados y diversos,79.81872165665683,9.0,0.6502,Prioridad 1,"MU, PT, BR"
+SA,9,Saudi Arabia,Conectados y diversos,78.96503516834161,10.0,0.6118,Prioridad 1,"AE, BH, KW"
+BE,10,Belgium,"Orígenes diversos, apellidos locales",78.65282090395635,10.0,0.5164,Prioridad 1,sin puente claro
+KW,11,Kuwait,Conectados y diversos,77.72187305762513,10.0,0.5018,Prioridad 1,"AE, QA, BH"
+QA,12,Qatar,Conectados y diversos,76.10702604169396,12.0,0.4124,Prioridad 2,"AE, KW, BH"
+GB,13,United Kingdom,"Origen homogéneo, apellidos compartidos",75.37808820277519,13.0,0.3002,Prioridad 2,"JM, CA, US"
+SG,14,Singapore,Conectados y diversos,74.06969448245958,14.0,0.1724,Prioridad 2,"MY, HK, CN"
+PT,15,Portugal,Conectados y diversos,72.8296639428315,16.0,0.1626,Prioridad 2,"MU, BR, CH"
+BH,16,Bahrain,Conectados y diversos,72.7901557272154,15.0,0.2686,Prioridad 2,"AE, KW, QA"
+CN,17,China,"Origen homogéneo, apellidos compartidos",72.106657330566,16.0,0.3126,Prioridad 2,"TW, CA, HK"
+AR,18,Argentina,"Origen homogéneo, apellidos compartidos",68.79941436180644,19.0,0.0004,Prioridad 2,"ES, CO, UY"
+MY,19,Malaysia,Conectados y diversos,66.60607487503243,21.0,0.0,Prioridad 2,"SG, BH, KW"
+OM,20,Oman,Conectados y diversos,65.95183367432209,22.0,0.0116,Prioridad 2,"AE, BH, KW"
+IT,21,Italy,Maduros con apellidos propios,65.76921119184874,22.0,0.0548,Prioridad 2,sin puente claro
+IN,22,India,Bajo desarrollo digital,64.13158982982551,23.0,0.157,Prioridad 2,"QA, KW, AE"
+UY,23,Uruguay,Conectados y diversos,63.35408267218416,25.0,0.0,Prioridad 2,"AR, ES, PA"
+IL,24,Israel,Conectados y diversos,62.741417974970446,26.0,0.0,Prioridad 3,"PS, JO, EG"
+RU,25,Russia,Maduros con apellidos propios,62.12667258289701,27.0,0.016,Prioridad 3,"BG, KZ"
+CL,26,Chile,"Origen homogéneo, apellidos compartidos",62.05677140817374,26.0,0.0,Prioridad 3,"CO, PE, AR"
+IR,27,Iran,"Orígenes diversos, apellidos locales",61.820249339586084,26.0,0.0006,Prioridad 3,"AF, CZ"
+MX,28,Mexico,"Origen homogéneo, apellidos compartidos",61.569534677689106,27.0,0.0036,Prioridad 3,"CO, GT, ES"
+CZ,29,Czechia,Maduros con apellidos propios,60.964005845655365,28.0,0.0,Prioridad 3,IR
+HK,30,Hong Kong,Maduros con apellidos propios,59.47506870641798,29.0,0.0062,Prioridad 3,"SG, MY, CA"
+NL,31,Netherlands,Maduros con apellidos propios,59.26700236414153,29.0,0.0016,Prioridad 3,sin puente claro
+FI,32,Finland,Maduros con apellidos propios,57.38158426509623,32.0,0.0004,Prioridad 3,"AE, QA, KW"
+NG,33,Nigeria,"Orígenes diversos, apellidos locales",56.81579905942028,33.0,0.055,Prioridad 3,"EG, SD, LY"
+TR,34,Turkey,Maduros con apellidos propios,54.921665777364915,35.0,0.0,Prioridad 3,sin puente claro
+KZ,35,Kazakhstan,"Orígenes diversos, apellidos locales",54.732859674326996,35.0,0.0,Prioridad 3,RU
+PL,36,Poland,Maduros con apellidos propios,53.990485146658244,36.0,0.0,Prioridad 3,sin puente claro
+PH,37,Philippines,"Origen homogéneo, apellidos compartidos",53.39335388337603,37.0,0.0,Prioridad 3,"GT, PE, MX"
+CO,38,Colombia,"Origen homogéneo, apellidos compartidos",52.92445625357449,38.0,0.0,Prioridad 3,"MX, ES, AR"
+PE,39,Peru,"Origen homogéneo, apellidos compartidos",52.74873019417709,38.0,0.0,Prioridad 3,"BO, CO, CL"
+BD,40,Bangladesh,Bajo desarrollo digital,51.79341392074838,39.0,0.005,Prioridad 3,"OM, BH, QA"
+ZA,41,South Africa,"Orígenes diversos, apellidos locales",49.883844469071924,41.0,0.0,Prioridad 3,sin puente claro
+IE,42,Ireland,Maduros con apellidos propios,49.6931681862307,42.0,0.0,Prioridad 3,GB
+DK,43,Denmark,Maduros con apellidos propios,49.17135233140515,43.0,0.0,Prioridad 3,sin puente claro
+PA,44,Panama,"Origen homogéneo, apellidos compartidos",47.370800164749674,44.0,0.0,Prioridad 3,"CO, MX, ES"
+DZ,45,Algeria,"Origen homogéneo, apellidos compartidos",47.23280907044898,44.0,0.0,Prioridad 3,"EG, MA, LY"
+CR,46,Costa Rica,"Origen homogéneo, apellidos compartidos",47.1655380047651,44.0,0.0,Prioridad 3,"CO, MX, PA"
+JO,47,Jordan,"Origen homogéneo, apellidos compartidos",46.96312049835085,44.0,0.0,Prioridad 3,"PS, EG, SD"
+GH,48,Ghana,"Orígenes diversos, apellidos locales",41.45980895673784,49.0,0.0,Prioridad 3,sin puente claro
+LY,49,Libya,"Origen homogéneo, apellidos compartidos",40.5268592509612,50.0,0.0,Prioridad 3,"SD, YE, EG"
+EG,50,Egypt,"Origen homogéneo, apellidos compartidos",39.16298640611441,51.0,0.0,Prioridad 3,"SD, LY, PS"
+PS,51,Palestine,"Origen homogéneo, apellidos compartidos",39.09846089641223,51.0,0.0,Prioridad 3,"JO, EG, SD"
+IQ,52,Iraq,"Origen homogéneo, apellidos compartidos",38.581442756290286,51.0,0.0,Prioridad 3,"YE, LY, SY"
+BG,53,Bulgaria,Maduros con apellidos propios,37.12481541338027,53.0,0.0,Prioridad 3,RU
+CM,54,Cameroon,"Orígenes diversos, apellidos locales",36.62013264190908,54.0,0.0,Prioridad 3,sin puente claro
+MA,55,Morocco,"Origen homogéneo, apellidos compartidos",36.22311984531658,53.0,0.0,Prioridad 3,"DZ, EG, LY"
+LB,56,Lebanon,"Origen homogéneo, apellidos compartidos",34.801155519003665,55.0,0.0,Prioridad 3,"SY, JO, LY"
+GT,57,Guatemala,"Origen homogéneo, apellidos compartidos",33.51005098230695,56.0,0.0,Prioridad 3,"MX, ES, CO"
+MU,58,Mauritius,"Origen homogéneo, apellidos compartidos",32.396570359701016,56.0,0.0,Prioridad 3,"PT, BR, CH"
+BO,59,Bolivia,"Origen homogéneo, apellidos compartidos",30.0120527524105,58.0,0.0,Prioridad 3,"PE, AR, MX"
+JM,60,Jamaica,"Origen homogéneo, apellidos compartidos",26.628517791838174,60.0,0.0,Prioridad 3,"GB, US, CA"
+TN,61,Tunisia,Maduros con apellidos propios,24.920024570312243,61.0,0.0,Prioridad 3,"DZ, EG, MA"
+SY,62,Syria,Bajo desarrollo digital,17.1239442070742,62.0,0.0,Prioridad 3,"SD, LY, LB"
+AF,63,Afghanistan,Bajo desarrollo digital,12.484762289851666,63.0,0.0,Prioridad 3,"IR, AE, SA"
+SD,64,Sudan,Bajo desarrollo digital,8.05013344987279,64.0,0.0,Prioridad 3,"LY, EG, JO"
+YE,65,Yemen,Bajo desarrollo digital,0.0,65.0,0.0,Prioridad 3,"LY, SD, EG"

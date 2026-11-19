@@ -1,0 +1,42 @@
+{
+  "modelo": {
+    "silhouette": 0.3754,
+    "davies_bouldin": 0.8569,
+    "calinski_harabasz": 40.047,
+    "estabilidad bootstrap (ARI, 200 remuestreos)": 0.8829,
+    "acuerdo con Ward (ARI)": 0.7543,
+    "acuerdo con GMM (ARI)": 0.5139,
+    "acuerdo entre semillas (ARI mínimo)": 1.0,
+    "acuerdo con la región del Banco Mundial (ARI)": 0.1973
+  },
+  "kpi_afinidad_migracion": {
+    "KPI: rho de Spearman afinidad vs migrantes (2.145 pares)": 0.3449,
+    "Test de Mantel: máximo rho en 2.000 permutaciones de países": 0.1837,
+    "Test de Mantel: p-valor": 0.0005,
+    "rho sin los 822 pares con cero migrantes": 0.4608
+  },
+  "validacion_segmentos_onu": {
+    "Segmentos del modelo (k=5)": {
+      "pares en el mismo grupo": 472.0,
+      "% vínculo fuerte, mismo grupo": 0.2564,
+      "% vínculo fuerte, grupos distintos": 0.2575,
+      "p-valor (permutación)": 0.5195
+    },
+    "Región del Banco Mundial (referencia)": {
+      "pares en el mismo grupo": 436.0,
+      "% vínculo fuerte, mismo grupo": 0.4817,
+      "% vínculo fuerte, grupos distintos": 0.1977,
+      "p-valor (permutación)": 0.0002
+    }
+  },
+  "ranking": {
+    "rho_mediana_simulaciones": 0.9521,
+    "pesos": {
+      "mercado": 0.35,
+      "diversidad_origen": 0.2,
+      "conectividad": 0.15,
+      "poblacion": 0.2,
+      "mayores65_pct": 0.1
+    }
+  }
+}

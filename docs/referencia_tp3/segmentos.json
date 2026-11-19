@@ -1,0 +1,117 @@
+{
+  "0": {
+    "nombre": "Conectados y diversos",
+    "centroide": {
+      "Diversidad de origen": 0.673,
+      "Conectividad de apellidos": 0.794,
+      "Mercado": 0.811
+    },
+    "paises": [
+      "AE",
+      "BH",
+      "BR",
+      "CA",
+      "CH",
+      "ES",
+      "IL",
+      "KW",
+      "MY",
+      "OM",
+      "PT",
+      "QA",
+      "SA",
+      "SG",
+      "US",
+      "UY"
+    ]
+  },
+  "1": {
+    "nombre": "Maduros con apellidos propios",
+    "centroide": {
+      "Diversidad de origen": -0.51,
+      "Conectividad de apellidos": -1.261,
+      "Mercado": 0.572
+    },
+    "paises": [
+      "BG",
+      "CZ",
+      "DE",
+      "DK",
+      "FI",
+      "HK",
+      "IE",
+      "IT",
+      "NL",
+      "PL",
+      "RU",
+      "TN",
+      "TR"
+    ]
+  },
+  "2": {
+    "nombre": "Origen homogéneo, apellidos compartidos",
+    "centroide": {
+      "Diversidad de origen": -0.739,
+      "Conectividad de apellidos": 0.444,
+      "Mercado": -0.179
+    },
+    "paises": [
+      "AR",
+      "BO",
+      "CL",
+      "CN",
+      "CO",
+      "CR",
+      "DZ",
+      "EG",
+      "GB",
+      "GT",
+      "IQ",
+      "JM",
+      "JO",
+      "LB",
+      "LY",
+      "MA",
+      "MU",
+      "MX",
+      "PA",
+      "PE",
+      "PH",
+      "PS"
+    ]
+  },
+  "3": {
+    "nombre": "Orígenes diversos, apellidos locales",
+    "centroide": {
+      "Diversidad de origen": 1.694,
+      "Conectividad de apellidos": -1.205,
+      "Mercado": -0.37
+    },
+    "paises": [
+      "BE",
+      "CM",
+      "FR",
+      "GH",
+      "IR",
+      "KZ",
+      "NG",
+      "ZA"
+    ]
+  },
+  "4": {
+    "nombre": "Bajo desarrollo digital",
+    "centroide": {
+      "Diversidad de origen": -0.237,
+      "Conectividad de apellidos": 0.593,
+      "Mercado": -2.254
+    },
+    "paises": [
+      "AF",
+      "BD",
+      "IN",
+      "SD",
+      "SY",
+      "YE"
+    ]
+  }
+}
