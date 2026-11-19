@@ -3,6 +3,9 @@
 Entrega 04 de Ciencia de Datos Aplicada (ITBA): despliegue del modelo de priorización de mercados por apellidos.
 Equipo: Francisco Varela, Milagros de Ezcurra y Agustín Lovato.
 
+**App online:** https://genea-planificador.onrender.com · **API documentada:** https://genea-planificador.onrender.com/docs
+(plan gratuito de Render: si estuvo un rato sin uso, la primera carga tarda alrededor de un minuto).
+
 El servicio toma el modelo entrenado en el TP3 (k-means con 5 segmentos sobre tres índices, ranking con
 sensibilidad a los pesos y países puente) y lo expone como una API REST con una interfaz web que la consume.
 No se reentrena nada: el servicio reproduce exactamente los segmentos, puntajes y prioridades del TP3
