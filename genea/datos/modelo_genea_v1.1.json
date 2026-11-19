@@ -1,0 +1,481 @@
+{
+ "version": "1.1",
+ "origen": "Modelo entrenado en el TP3 (k-means, k = 5, sobre 3 índices). Exportado sin reentrenar.",
+ "fecha_entrenamiento": "2026-11-03",
+ "variables_modelo": [
+  "diversidad_origen",
+  "n_familias_relevantes",
+  "cuota_apellidos_transregionales",
+  "paises_por_apellido_pond",
+  "similitud_max",
+  "pbi_pc_ppa",
+  "internet_pct",
+  "ingreso_ordinal",
+  "urbana_pct",
+  "poblacion",
+  "mayores65_pct"
+ ],
+ "variables_log": [
+  "n_familias_relevantes",
+  "pbi_pc_ppa",
+  "poblacion"
+ ],
+ "orden_ingreso": {
+  "Low income": 0,
+  "Lower middle income": 1,
+  "Upper middle income": 2,
+  "High income": 3
+ },
+ "regiones": [
+  "East Asia & Pacific",
+  "Europe & Central Asia",
+  "Latin America & Caribbean",
+  "Middle East, North Africa, Afghanistan & Pakistan",
+  "North America",
+  "South Asia",
+  "Sub-Saharan Africa"
+ ],
+ "bloques": {
+  "diversidad_origen": {
+   "diversidad_origen": 1,
+   "n_familias_relevantes": 1
+  },
+  "conectividad": {
+   "cuota_apellidos_transregionales": 1,
+   "paises_por_apellido_pond": 1,
+   "similitud_max": 1
+  },
+  "mercado": {
+   "pbi_pc_ppa": 1,
+   "internet_pct": 1,
+   "ingreso_ordinal": 1,
+   "urbana_pct": 1
+  }
+ },
+ "escalador_variables": {
+  "media": {
+   "diversidad_origen": 0.26641505614936095,
+   "n_familias_relevantes": 1.075093003400599,
+   "cuota_apellidos_transregionales": 0.6572534653555256,
+   "paises_por_apellido_pond": 8.928913165351275,
+   "similitud_max": 0.5896423853518239,
+   "pbi_pc_ppa": 10.275193331772815,
+   "internet_pct": 82.06045494446154,
+   "ingreso_ordinal": 2.1846153846153844,
+   "urbana_pct": 74.05453062612294,
+   "poblacion": 17.03194840036311,
+   "mayores65_pct": 11.489046026144164
+  },
+  "desvio": {
+   "diversidad_origen": 0.17798191413099967,
+   "n_familias_relevantes": 0.37399030270238487,
+   "cuota_apellidos_transregionales": 0.28929961949362576,
+   "paises_por_apellido_pond": 4.926621271804019,
+   "similitud_max": 0.2732481847535332,
+   "pbi_pc_ppa": 1.000457600970463,
+   "internet_pct": 19.902646067881413,
+   "ingreso_ordinal": 0.9264042595276675,
+   "urbana_pct": 18.01035440081965,
+   "poblacion": 1.4713042131635898,
+   "mayores65_pct": 7.295180671710675
+  }
+ },
+ "escalador_indices": {
+  "media": {
+   "diversidad_origen": -2.1862853408003084e-16,
+   "conectividad": -8.540177112501205e-17,
+   "mercado": -3.586874387250506e-17
+  },
+  "desvio": {
+   "diversidad_origen": 0.9649353325056236,
+   "conectividad": 0.8812714658663013,
+   "mercado": 0.9000836758153612
+  }
+ },
+ "medianas_region": {
+  "diversidad_origen": {
+   "East Asia & Pacific": 0.2214930624206222,
+   "Europe & Central Asia": 0.2570494443497948,
+   "Latin America & Caribbean": 0.1535141787516209,
+   "Middle East, North Africa, Afghanistan & Pakistan": 0.2268395147942019,
+   "North America": 0.568902340643184,
+   "South Asia": 0.35467549673682813,
+   "Sub-Saharan Africa": 0.5198802846312028
+  },
+  "n_familias_relevantes": {
+   "East Asia & Pacific": 1.0986122886681098,
+   "Europe & Central Asia": 1.0986122886681098,
+   "Latin America & Caribbean": 0.6931471805599453,
+   "Middle East, North Africa, Afghanistan & Pakistan": 0.8958797346140275,
+   "North America": 1.2424533248940002,
+   "South Asia": 1.3862943611198906,
+   "Sub-Saharan Africa": 1.4978661367769954
+  },
+  "cuota_apellidos_transregionales": {
+   "East Asia & Pacific": 0.7497802661607712,
+   "Europe & Central Asia": 0.40016949308285815,
+   "Latin America & Caribbean": 0.8897704235677266,
+   "Middle East, North Africa, Afghanistan & Pakistan": 0.6807186833755543,
+   "North America": 0.947649806575216,
+   "South Asia": 0.8415770634506542,
+   "Sub-Saharan Africa": 0.44470225776610856
+  },
+  "paises_por_apellido_pond": {
+   "East Asia & Pacific": 8.266833305906056,
+   "Europe & Central Asia": 3.2449328820932637,
+   "Latin America & Caribbean": 9.513479818317958,
+   "Middle East, North Africa, Afghanistan & Pakistan": 13.133398189413207,
+   "North America": 9.588127848104817,
+   "South Asia": 12.59056824541618,
+   "Sub-Saharan Africa": 6.2008323686062035
+  },
+  "similitud_max": {
+   "East Asia & Pacific": 0.6312044047788825,
+   "Europe & Central Asia": 0.2816307002983679,
+   "Latin America & Caribbean": 0.722532552430674,
+   "Middle East, North Africa, Afghanistan & Pakistan": 0.8456237464987493,
+   "North America": 0.6433867816379593,
+   "South Asia": 0.691595366030971,
+   "Sub-Saharan Africa": 0.25629538543534275
+  },
+  "pbi_pc_ppa": {
+   "East Asia & Pacific": 10.63341676857517,
+   "Europe & Central Asia": 11.057017537406155,
+   "Latin America & Caribbean": 10.111387364653893,
+   "Middle East, North Africa, Afghanistan & Pakistan": 9.77135201141066,
+   "North America": 11.258266323345365,
+   "South Asia": 9.298604510170948,
+   "Sub-Saharan Africa": 9.111651061493445
+  },
+  "internet_pct": {
+   "East Asia & Pacific": 94.37757178,
+   "Europe & Central Asia": 93.612023875,
+   "Latin America & Caribbean": 83.79290513000001,
+   "Middle East, North Africa, Afghanistan & Pakistan": 85.98902702000001,
+   "North America": 94.52355194,
+   "South Asia": 61.71085658,
+   "Sub-Saharan Africa": 59.21724892
+  },
+  "ingreso_ordinal": {
+   "East Asia & Pacific": 2.0,
+   "Europe & Central Asia": 3.0,
+   "Latin America & Caribbean": 2.0,
+   "Middle East, North Africa, Afghanistan & Pakistan": 2.0,
+   "North America": 3.0,
+   "South Asia": 1.0,
+   "Sub-Saharan Africa": 1.0
+  },
+  "urbana_pct": {
+   "East Asia & Pacific": 77.3948812296229,
+   "Europe & Central Asia": 77.04781435858996,
+   "Latin America & Caribbean": 79.88385343113634,
+   "Middle East, North Africa, Afghanistan & Pakistan": 82.0452252184937,
+   "North America": 81.53393766408774,
+   "South Asia": 34.464370238396754,
+   "Sub-Saharan Africa": 57.2969451567224
+  },
+  "poblacion": {
+   "East Asia & Pacific": 17.39841372353784,
+   "Europe & Central Asia": 16.78165199964294,
+   "Latin America & Caribbean": 16.773800069729482,
+   "Middle East, North Africa, Afghanistan & Pakistan": 16.294352911027172,
+   "North America": 18.59727183228858,
+   "South Asia": 20.04428019295601,
+   "Sub-Saharan Africa": 17.566464615569934
+  },
+  "mayores65_pct": {
+   "East Asia & Pacific": 14.2110377720053,
+   "Europe & Central Asia": 21.0399251556364,
+   "Latin America & Caribbean": 9.92857656082338,
+   "Middle East, North Africa, Afghanistan & Pakistan": 4.384775622130364,
+   "North America": 19.32379610754385,
+   "South Asia": 7.02249748232094,
+   "Sub-Saharan Africa": 3.587355737829255
+  }
+ },
+ "medianas_global": {
+  "diversidad_origen": 0.219730384160127,
+  "n_familias_relevantes": 1.0986122886681098,
+  "cuota_apellidos_transregionales": 0.7497802661607712,
+  "paises_por_apellido_pond": 8.266833305906056,
+  "similitud_max": 0.6756282378256551,
+  "pbi_pc_ppa": 10.539405114259088,
+  "internet_pct": 88.58496367,
+  "ingreso_ordinal": 2.0,
+  "urbana_pct": 77.3948812296229,
+  "poblacion": 17.21267776269564,
+  "mayores65_pct": 9.65704983976816
+ },
+ "centroides": [
+  [
+   0.6730361043532384,
+   0.7943036238751602,
+   0.8112121046067247
+  ],
+  [
+   -0.5102977319725663,
+   -1.2613641448244532,
+   0.5721344718136817
+  ],
+  [
+   -0.739407104577704,
+   0.44393354614171604,
+   -0.1786619012306366
+  ],
+  [
+   1.6940721866500468,
+   -1.2045875860179027,
+   -0.3700784663331915
+  ],
+  [
+   -0.23672139108322238,
+   0.5931730956234662,
+   -2.254325374924319
+  ]
+ ],
+ "segmentos": {
+  "0": {
+   "nombre": "Conectados y diversos",
+   "rasgo": "Alto poder adquisitivo y familias con apellidos compartidos con otros países.",
+   "estrategia": "Propuesta centrada en la búsqueda transfronteriza: rastrear la rama de la familia en otro país."
+  },
+  "1": {
+   "nombre": "Maduros con apellidos propios",
+   "rasgo": "Mercado fuerte, apellidos locales y la población más envejecida.",
+   "estrategia": "Propuesta centrada en archivos y registros nacionales."
+  },
+  "2": {
+   "nombre": "Origen homogéneo, apellidos compartidos",
+   "rasgo": "La menor diversidad de origen, apellidos muy compartidos y mercado medio.",
+   "estrategia": "Expansión a través de países puente: entrar desde España o Estados Unidos con la misma base de apellidos, con precios adaptados."
+  },
+  "3": {
+   "nombre": "Orígenes diversos, apellidos locales",
+   "rasgo": "La mayor diversidad de origen.",
+   "estrategia": "Propuesta centrada en descubrir orígenes múltiples."
+  },
+  "4": {
+   "nombre": "Bajo desarrollo digital",
+   "rasgo": "Bajo uso de internet.",
+   "estrategia": "En general no prioritarios para un modelo de suscripción digital."
+  }
+ },
+ "pesos_ranking": {
+  "mercado": 0.35,
+  "diversidad_origen": 0.2,
+  "conectividad": 0.15,
+  "poblacion": 0.2,
+  "mayores65_pct": 0.1
+ },
+ "escala_puntaje": [
+  -1.23212978306526,
+  0.9851700542162316
+ ],
+ "sensibilidad": {
+  "concentracion_dirichlet": 30,
+  "simulaciones": 5000,
+  "semilla": 42,
+  "top": 10
+ },
+ "regla_prioridad": {
+  "prioridad_1_prob_top10_min": 0.5,
+  "prioridad_2_puesto_mediano_max": 25
+ },
+ "puentes": {
+  "similitud_minima": 0.2,
+  "cantidad": 3
+ },
+ "paises_entrenamiento": [
+  "AE",
+  "AF",
+  "AR",
+  "BD",
+  "BE",
+  "BG",
+  "BH",
+  "BO",
+  "BR",
+  "CA",
+  "CH",
+  "CL",
+  "CM",
+  "CN",
+  "CO",
+  "CR",
+  "CZ",
+  "DE",
+  "DK",
+  "DZ",
+  "EG",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "GH",
+  "GT",
+  "HK",
+  "IE",
+  "IL",
+  "IN",
+  "IQ",
+  "IR",
+  "IT",
+  "JM",
+  "JO",
+  "KW",
+  "KZ",
+  "LB",
+  "LY",
+  "MA",
+  "MU",
+  "MX",
+  "MY",
+  "NG",
+  "NL",
+  "OM",
+  "PA",
+  "PE",
+  "PH",
+  "PL",
+  "PS",
+  "PT",
+  "QA",
+  "RU",
+  "SA",
+  "SD",
+  "SG",
+  "SY",
+  "TN",
+  "TR",
+  "US",
+  "UY",
+  "YE",
+  "ZA"
+ ],
+ "seleccion": {
+  "total": 63,
+  "pasan_estabilidad": 13,
+  "pasan_tamano": 44,
+  "pasan_ambos": 13,
+  "por_espacio": {
+   "16 variables": {
+    "total": 21,
+    "pasan_ambos": 3
+   },
+   "3 índices": {
+    "total": 21,
+    "pasan_ambos": 5
+   },
+   "PCA (3 componentes)": {
+    "total": 21,
+    "pasan_ambos": 5
+   }
+  },
+  "candidatas": [
+   {
+    "espacio": "3 índices",
+    "algoritmo": "k-means",
+    "k": 5,
+    "silhouette": 0.375,
+    "estabilidad": 0.866,
+    "tamano_minimo": 6
+   },
+   {
+    "espacio": "3 índices",
+    "algoritmo": "Jerárquico (Ward)",
+    "k": 5,
+    "silhouette": 0.36,
+    "estabilidad": 0.715,
+    "tamano_minimo": 7
+   },
+   {
+    "espacio": "3 índices",
+    "algoritmo": "k-means",
+    "k": 4,
+    "silhouette": 0.354,
+    "estabilidad": 0.711,
+    "tamano_minimo": 8
+   },
+   {
+    "espacio": "PCA (3 componentes)",
+    "algoritmo": "k-means",
+    "k": 3,
+    "silhouette": 0.353,
+    "estabilidad": 0.735,
+    "tamano_minimo": 6
+   },
+   {
+    "espacio": "3 índices",
+    "algoritmo": "k-means",
+    "k": 6,
+    "silhouette": 0.347,
+    "estabilidad": 0.724,
+    "tamano_minimo": 5
+   },
+   {
+    "espacio": "3 índices",
+    "algoritmo": "Jerárquico (Ward)",
+    "k": 4,
+    "silhouette": 0.345,
+    "estabilidad": 0.701,
+    "tamano_minimo": 7
+   },
+   {
+    "espacio": "PCA (3 componentes)",
+    "algoritmo": "Jerárquico (Ward)",
+    "k": 3,
+    "silhouette": 0.344,
+    "estabilidad": 0.722,
+    "tamano_minimo": 6
+   },
+   {
+    "espacio": "PCA (3 componentes)",
+    "algoritmo": "Jerárquico (Ward)",
+    "k": 4,
+    "silhouette": 0.342,
+    "estabilidad": 0.713,
+    "tamano_minimo": 6
+   },
+   {
+    "espacio": "PCA (3 componentes)",
+    "algoritmo": "k-means",
+    "k": 4,
+    "silhouette": 0.332,
+    "estabilidad": 0.719,
+    "tamano_minimo": 7
+   },
+   {
+    "espacio": "PCA (3 componentes)",
+    "algoritmo": "k-means",
+    "k": 2,
+    "silhouette": 0.298,
+    "estabilidad": 0.798,
+    "tamano_minimo": 27
+   },
+   {
+    "espacio": "16 variables",
+    "algoritmo": "k-means",
+    "k": 3,
+    "silhouette": 0.209,
+    "estabilidad": 0.717,
+    "tamano_minimo": 7
+   },
+   {
+    "espacio": "16 variables",
+    "algoritmo": "k-means",
+    "k": 2,
+    "silhouette": 0.187,
+    "estabilidad": 0.752,
+    "tamano_minimo": 27
+   },
+   {
+    "espacio": "16 variables",
+    "algoritmo": "GMM",
+    "k": 2,
+    "silhouette": 0.165,
+    "estabilidad": 0.711,
+    "tamano_minimo": 31
+   }
+  ]
+ }
+}
