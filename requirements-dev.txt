@@ -1,0 +1,7 @@
+-r requirements.txt
+# Tests
+pytest==9.1.1
+httpx
+# Solo para regenerar el artefacto desde el joblib del TP3 (scripts/exportar_artefacto.py)
+joblib
+scikit-learn==1.9.1

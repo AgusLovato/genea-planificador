@@ -1,0 +1,8 @@
+# Blueprint de Render: un solo servicio web que levanta la API y la interfaz
+services:
+  - type: web
+    name: genea-planificador
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
