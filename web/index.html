@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genea · Planificador de expansión</title>
+<meta name="description" content="Planificador de expansión de Genea: dónde y cómo entrar a cada mercado según la distribución de apellidos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f2a5c'/%3E%3Cpath d='M16 7v18M16 13l-6 6M16 13l6 6M10 19v6M22 19v6' stroke='%23f2b3a6' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="barra">
+  <div class="barra-in">
+    <a class="marca" href="#ranking" aria-label="Genea, inicio">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M16 7v18M16 13l-6 6M16 13l6 6M10 19v6M22 19v6"/></svg>
+      <span><b>Genea</b> Planificador de expansión</span>
+    </a>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#ranking" data-tab="ranking">Dónde entrar</a>
+      <a href="#pais" data-tab="pais">Ficha de país</a>
+      <a href="#simulador" data-tab="simulador">¿Qué pasa si…?</a>
+      <a href="#apellido" data-tab="apellido">Tu apellido</a>
+      <a href="#como" data-tab="como">Cómo funciona</a>
+    </nav>
+    <button id="tema" class="tema" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar modo claro u oscuro">
+      <svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="app">
+  <div id="estado-servicio" class="aviso-servicio" hidden></div>
+
+  <!-- ============ Dónde entrar ============ -->
+  <section id="v-ranking" class="vista" hidden>
+    <div class="intro">
+      <h1>¿A qué mercados entrar primero?</h1>
+      <p>Cada país tiene un puntaje de atractivo que combina cinco componentes. Mové los pesos según la estrategia de Genea: el ranking, su sensibilidad y las prioridades se recalculan en la API.</p>
+    </div>
+    <div class="grilla-ranking">
+      <aside class="tarjeta pesos">
+        <h2>Pesos del ranking</h2>
+        <div class="presets" id="presets"></div>
+        <div id="sliders"></div>
+        <p class="nota">Los pesos se normalizan para que sumen 100%. Con cada combinación se corren 5.000 simulaciones de pesos alrededor de la elegida para medir la robustez.</p>
+      </aside>
+      <div class="col">
+        <div class="kpis" id="kpis-ranking"></div>
+        <div class="tarjeta">
+          <div class="tabla-cab">
+            <h2>Ranking de mercados</h2>
+            <div class="filtros" id="filtro-prioridad" role="group" aria-label="Filtrar por prioridad">
+              <button type="button" data-p="0" class="activo">Todos</button>
+              <button type="button" data-p="1">Prioridad 1</button>
+              <button type="button" data-p="2">Prioridad 2</button>
+              <button type="button" data-p="3">Prioridad 3</button>
+            </div>
+          </div>
+          <div class="tabla-scroll"><table class="tabla" id="tabla-ranking"></table></div>
+          <p class="nota">Prioridad 1: probabilidad de top 10 de al menos 50% en las simulaciones. Prioridad 2: puesto mediano de 25 o mejor. Tocá un país para ver su ficha.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Ficha de país ============ -->
+  <section id="v-pais" class="vista" hidden>
+    <div class="intro fila-intro">
+      <div>
+        <h1>Ficha de país</h1>
+        <p>Qué tipo de mercado es, cómo conviene entrar y qué otros mercados abre.</p>
+      </div>
+      <label class="selector">País
+        <select id="sel-pais"></select>
+      </label>
+    </div>
+    <div id="ficha"></div>
+  </section>
+
+  <!-- ============ Simulador ============ -->
+  <section id="v-simulador" class="vista" hidden>
+    <div class="intro">
+      <h1>¿Qué pasa si…?</h1>
+      <p>Partí de un país y cambiá sus datos, o cargá un país nuevo. El modelo entrenado en el TP3 lo procesa sin reentrenar: lo que falte se completa con la mediana de su región y se avisa.</p>
+    </div>
+    <div class="grilla-sim">
+      <form class="tarjeta" id="form-sim" novalidate>
+        <div class="fila-form">
+          <label class="selector">Partir de
+            <select id="sim-base"></select>
+          </label>
+          <div class="ejemplos" id="sim-ejemplos"></div>
+        </div>
+        <div id="sim-campos"></div>
+        <div class="acciones">
+          <button type="submit" class="boton">Evaluar</button>
+          <button type="button" class="boton secundario" id="sim-reset">Volver a los datos originales</button>
+        </div>
+      </form>
+      <div id="sim-resultado" class="col"></div>
+    </div>
+  </section>
+
+  <!-- ============ Tu apellido ============ -->
+  <section id="v-apellido" class="vista" hidden>
+    <div class="intro centrada">
+      <h1>¿Dónde está tu apellido?</h1>
+      <p>Escribí tu apellido y mirá en qué países aparece en la fuente que usa Genea. Son los lugares donde podrías encontrar otras ramas de tu familia.</p>
+      <form id="form-apellido" class="buscador" role="search" autocomplete="off">
+        <input id="in-apellido" list="sug-apellido" placeholder="Por ejemplo: Varela, García, Rossi" aria-label="Apellido" maxlength="60">
+        <datalist id="sug-apellido"></datalist>
+        <button class="boton" type="submit">Buscar</button>
+      </form>
+    </div>
+    <div id="res-apellido"></div>
+  </section>
+
+  <!-- ============ Cómo funciona ============ -->
+  <section id="v-como" class="vista" hidden>
+    <div class="intro">
+      <h1>Cómo funciona</h1>
+      <p>Los criterios y supuestos del modelo, tal como los usa el servicio. La documentación técnica de la API está en <a href="/docs" target="_blank" rel="noopener">/docs</a>.</p>
+    </div>
+    <div id="como"></div>
+  </section>
+</main>
+
+<footer class="pie">
+  <p>Ciencia de Datos Aplicada (ITBA) · Francisco Varela, Milagros de Ezcurra y Agustín Lovato · Genea es una empresa ficticia. <span id="version"></span></p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
