@@ -177,7 +177,7 @@ async function mostrarFicha(codigo) {
     caja.innerHTML = `
       <div class="tarjeta" style="margin-bottom:1rem">
         <div class="cabecera-ficha">
-          <div><h2>${esc(f.pais)}</h2><div class="meta">${esc(f.region_es)} · ${esc(f.ingreso)}${f.origen_imputado ? " · origen imputado con la mediana regional" : ""}</div></div>
+          <div><h2>${esc(f.pais)}</h2><div class="meta">${esc(f.region_es)}, ${esc(f.ingreso).toLowerCase()}${f.origen_imputado ? ". Origen imputado con la mediana regional" : ""}</div></div>
           <div class="numeros">
             <div><b>${r.puesto}°</b><span>de 65 en el ranking</span></div>
             <div><b>${fmt(r.puntaje, 1)}</b><span>puntaje (0 a 100)</span></div>
@@ -323,7 +323,7 @@ function pintarEvaluacion(r) {
     </div>
     <div class="tarjeta">
       <div class="estrategia" style="--c:${segColor(s.id)}">
-        <div class="etiqueta">${esc(r.nombre)} · segmento</div>
+        <div class="etiqueta">${esc(r.nombre)} queda en el segmento</div>
         <div class="como">${esc(s.nombre)}</div>
         <div class="rasgo">${esc(s.estrategia)}</div>
       </div>
@@ -368,7 +368,7 @@ async function buscarApellido() {
       : `Tu apellido aparece en <b>${r.cantidad_paises} ${r.cantidad_paises === 1 ? "país" : "países"}</b>. Ninguno está en la primera ola de Genea, así que la búsqueda en esos países llegaría en una etapa siguiente.`;
     caja.innerHTML = `
       <div class="res-cabecera"><h2>${esc(r.apellido)}</h2>
-        <p>${r.origen ? `Origen según la fuente: ${esc(r.origen)}` : "La fuente no informa su origen"}${r.familia_origen ? ` · familia ${esc(r.familia_origen)}` : ""}${r.se_busco_sin_particulas ? " · buscado sin partículas" : ""}</p></div>
+        <p>${r.origen ? `Origen según la fuente: ${esc(r.origen)}` : "La fuente no informa su origen"}${r.familia_origen ? `, familia ${esc(r.familia_origen)}` : ""}${r.se_busco_sin_particulas ? ". Buscado sin partículas" : ""}</p></div>
       <div class="mensaje-usuario">${mensaje}</div>
       <div class="tarjeta"><div class="tabla-scroll"><table class="tabla">
         <thead><tr><th>País</th><th>Registros en la fuente</th><th class="num">Puesto en el país</th><th>Para Genea</th></tr></thead>
@@ -427,7 +427,7 @@ function armarComo() {
       </div>
     </div>
     <div class="tarjeta" style="margin-top:1rem"><h2>Los cinco segmentos</h2>
-      <div class="grilla-3" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${m.segmentos.map((s) => `<div class="estrategia" style="--c:${segColor(s.id)}"><div class="etiqueta">${esc(s.nombre)} · ${s.paises.length} países</div><div class="rasgo">${esc(s.rasgo)}</div><div class="como" style="font-size:.9rem">${esc(s.estrategia)}</div></div>`).join("")}</div>
+      <div class="grilla-3" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${m.segmentos.map((s) => `<div class="estrategia" style="--c:${segColor(s.id)}"><div class="etiqueta">${esc(s.nombre)} (${s.paises.length} países)</div><div class="rasgo">${esc(s.rasgo)}</div><div class="como" style="font-size:.9rem">${esc(s.estrategia)}</div></div>`).join("")}</div>
     </div>
     <div class="grilla-2" style="margin-top:1rem">
       <div class="tarjeta"><h2>Regla de prioridad</h2><ul>${Object.entries(m.regla_prioridad).map(([k, v]) => `<li>${chipP(k)} ${esc(v)}</li>`).join("")}</ul></div>
