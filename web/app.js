@@ -49,7 +49,7 @@ $("#tema").addEventListener("click", () => aplicarTema(document.documentElement.
 try { const t = localStorage.getItem("genea-tema"); if (t === "dark" || t === "light") aplicarTema(t); } catch (_) { /* nada */ }
 
 /* ---------------------------------------------------------------- navegación */
-const VISTAS = ["ranking", "pais", "simulador", "apellido", "como"];
+const VISTAS = ["ranking", "pais", "simulador", "parecidos", "apellido", "como"];
 function navegar() {
   const [vista, arg] = (location.hash.replace("#", "") || "ranking").split("/");
   const v = VISTAS.includes(vista) ? vista : "ranking";
@@ -57,6 +57,7 @@ function navegar() {
   document.querySelectorAll(".tabs a").forEach((a) => a.classList.toggle("activo", a.dataset.tab === v));
   if (v === "pais") mostrarFicha(decodeURIComponent(arg || $("#sel-pais").value || "AR"));
   if (v === "simulador" && arg) { $("#sim-base").value = decodeURIComponent(arg); cargarBaseSim(); }
+  if (v === "parecidos") { if (arg) $("#sel-origen").value = decodeURIComponent(arg).toUpperCase(); buscarParecidos(); }
   if (v === "apellido" && arg) { $("#in-apellido").value = decodeURIComponent(arg); buscarApellido(); }
   window.scrollTo({ top: 0 });
 }
@@ -341,6 +342,38 @@ function pintarEvaluacion(r) {
       <p class="nota">Con los pesos elegidos en "Dónde entrar": ${ORDEN_COMP.map((c) => `${esc(ESTADO.modelo.nombres_componentes[c])} ${pct(ESTADO.pesos[c] / ORDEN_COMP.reduce((t, x) => t + ESTADO.pesos[x], 0))}`).join(", ")}.</p></div>`;
 }
 
+/* ---------------------------------------------------------------- mercados parecidos */
+ESTADO.pesoCultura = 0.5;
+async function buscarParecidos() {
+  const cod = $("#sel-origen").value || "AR", caja = $("#res-parecidos");
+  caja.innerHTML = `<p class="cargando">Buscando…</p>`;
+  try {
+    const r = await api(`/api/similares/${encodeURIComponent(cod)}?peso_cultura=${ESTADO.pesoCultura}&n=10`);
+    const o = r.origen, pf = o.perfil;
+    $("#titulo-parecidos").textContent = `Los 10 mercados más parecidos a ${o.pais}`;
+    $("#perfil-origen").innerHTML = `<b>${esc(o.pais)}</b>: ingreso ${esc(pf.ingreso_ordinal.valor)}, PBI per cápita ${esc(pf.pbi_pc_ppa.valor)}, ${esc(pf.internet_pct.valor)} usa internet, ${esc(pf.urbana_pct.valor)} vive en ciudades y ${esc(pf.mayores65_pct.valor)} tiene 65 años o más.`;
+    caja.innerHTML = `<div class="tabla-scroll"><table class="tabla parecidos">
+      <thead><tr><th class="num">#</th><th>País</th><th>Parecido</th><th class="num">Perfil</th><th class="num">Cultura</th><th class="num">Población</th><th>Por qué</th></tr></thead>
+      <tbody>${r.mercados.map((m) => `<tr>
+        <td class="num">${m.puesto}</td>
+        <td><div class="pais-celda"><b>${esc(m.pais)}</b><small>${esc(m.region_es)}</small></div></td>
+        <td><div class="mini-barra"><div class="pista"><div class="relleno" style="width:${m.parecido}%"></div></div><span>${fmt(m.parecido, 0)}</span></div></td>
+        <td class="num" data-l="Perfil">${fmt(m.perfil, 0)}</td>
+        <td class="num" data-l="Cultura">${fmt(m.cultura, 0)}</td>
+        <td class="num" data-l="Población">${fmt(m.poblacion / 1e6, m.poblacion < 1e7 ? 1 : 0)} M</td>
+        <td><ul class="motivos">${m.razones.map((t) => `<li>${esc(t)}</li>`).join("")}${m.a_tener_en_cuenta.map((t) => `<li class="ojo">${esc(t)}</li>`).join("")}</ul></td>
+      </tr>`).join("")}</tbody></table></div>
+      <p class="nota">Parecido de 0 a 100: ${pct(r.pesos.perfil)} perfil del consumidor y ${pct(r.pesos.cultura)} cercanía cultural. ${r.metodo.map(esc).join(" ")} En gris, lo que conviene revisar antes de entrar.</p>`;
+  } catch (e) { caja.innerHTML = cajaError(e); }
+}
+$("#sel-origen").addEventListener("change", (ev) => { location.hash = `#parecidos/${ev.target.value}`; });
+$("#enfoque-parecidos").addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-w]"); if (!b) return;
+  ESTADO.pesoCultura = Number(b.dataset.w);
+  document.querySelectorAll("#enfoque-parecidos button").forEach((x) => x.classList.toggle("activo", x === b));
+  buscarParecidos();
+});
+
 /* ---------------------------------------------------------------- apellido */
 const sugerirApellido = debounce(async (texto) => {
   if (texto.trim().length < 2) return;
@@ -444,6 +477,8 @@ async function iniciar() {
     const ordenados = ESTADO.paises.slice().sort((a, b) => a.pais.localeCompare(b.pais, "es"));
     $("#sel-pais").innerHTML = ordenados.map((p) => `<option value="${esc(p.codigo)}">${esc(p.pais)}</option>`).join("") + `<option value="TW">Taiwán</option>`;
     $("#sel-pais").value = "AR";
+    $("#sel-origen").innerHTML = ordenados.map((p) => `<option value="${esc(p.codigo)}">${esc(p.pais)}</option>`).join("");
+    $("#sel-origen").value = "AR";
     armarPesos(); armarSimulador(); armarComo();
     await recalcular();
     navegar();

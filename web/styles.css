@@ -553,6 +553,26 @@ input[type=range]:focus-visible { outline: 1px dotted var(--tinta); outline-offs
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
 /* ================================================================ celulares: marca y tema arriba, pestañas en una fila desplazable */
+/* Mercados parecidos */
+.perfil-origen { margin: 0 0 .8rem; font-size: .92rem; color: var(--suave); }
+.perfil-origen b { color: var(--tinta); }
+.tabla.parecidos td { vertical-align: top; }
+.tabla.parecidos .mini-barra { min-width: 120px; }
+.motivos { list-style: none; margin: 0; padding: 0; font-size: .86rem; line-height: 1.35; min-width: 280px; }
+.motivos li + li { margin-top: .2rem; }
+.motivos li.ojo { color: var(--suave); }
+@media (max-width: 760px) {
+  #enfoque-parecidos button { font-size: .8rem; padding-left: .45rem; padding-right: .45rem; }
+  .tabla.parecidos thead { display: none; }
+  .tabla.parecidos, .tabla.parecidos tbody { display: block; }
+  .tabla.parecidos tr { display: grid; grid-template-columns: 1.7rem 1fr 1fr 1fr; column-gap: .4rem; padding: .7rem 0; border-bottom: 1px solid var(--linea); }
+  .tabla.parecidos td { display: block; border: 0; padding: .12rem 0; text-align: left; }
+  .tabla.parecidos td:first-child { grid-row: 1 / span 4; text-align: right; font-weight: 700; }
+  .tabla.parecidos td:nth-child(2), .tabla.parecidos td:nth-child(3), .tabla.parecidos td:nth-child(7) { grid-column: 2 / -1; }
+  .tabla.parecidos td[data-l]::before { content: attr(data-l) " "; color: var(--suave); font-size: .8rem; }
+  .motivos { min-width: 0; }
+}
+
 @media (max-width: 760px) {
   .barra-in { gap: .5rem; }
   .marca { flex: 1; }
