@@ -38,15 +38,6 @@ function cajaError(e) {
 }
 const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
-// Tema (manual)
-function aplicarTema(t) {
-  document.documentElement.dataset.theme = t;
-  $("#tema").setAttribute("aria-label", t === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
-  try { localStorage.setItem("genea-tema", t); } catch (_) { /* sin almacenamiento */ }
-}
-$("#tema").addEventListener("click", () => aplicarTema(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
-try { const t = localStorage.getItem("genea-tema"); if (t === "dark" || t === "light") aplicarTema(t); } catch (_) { /* nada */ }
-
 // Navegación
 const VISTAS = ["ranking", "pais", "simulador", "parecidos", "apellido", "como"];
 function navegar() {
@@ -472,7 +463,6 @@ async function iniciar() {
   try {
     const [modelo, paises] = await Promise.all([api("/api/modelo"), api("/api/paises")]);
     ESTADO.modelo = modelo; ESTADO.paises = paises.paises;
-    $("#version").textContent = `Modelo v${modelo.version}.`;
     const ordenados = ESTADO.paises.slice().sort((a, b) => a.pais.localeCompare(b.pais, "es"));
     $("#sel-pais").innerHTML = ordenados.map((p) => `<option value="${esc(p.codigo)}">${esc(p.pais)}</option>`).join("") + `<option value="TW">Taiwán</option>`;
     $("#sel-pais").value = "AR";
