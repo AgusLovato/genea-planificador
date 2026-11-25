@@ -102,3 +102,29 @@ def test_apellidos(cliente):
 
 def test_web_se_sirve(cliente):
     assert cliente.get("/").status_code == 200
+
+
+def test_similares_argentina(cliente):
+    r = cliente.get("/api/similares/ar").json()
+    assert r["origen"]["pais"] == "Argentina" and r["candidatos"] == 64 and len(r["mercados"]) == 10
+    codigos = [m["codigo"] for m in r["mercados"]]
+    assert "AR" not in codigos and {"UY", "ES"} <= set(codigos)
+    parecidos = [m["parecido"] for m in r["mercados"]]
+    assert parecidos == sorted(parecidos, reverse=True) and all(0 <= p <= 100 for p in parecidos)
+    assert all(m["razones"] for m in r["mercados"])
+
+
+def test_similares_peso_cultura_cambia_el_orden(cliente):
+    solo_perfil = cliente.get("/api/similares/AR", params={"peso_cultura": 0, "n": 3}).json()["mercados"]
+    solo_cultura = cliente.get("/api/similares/AR", params={"peso_cultura": 1, "n": 3}).json()["mercados"]
+    assert all(m["parecido"] == m["perfil"] for m in solo_perfil)
+    assert all(m["parecido"] == m["cultura"] for m in solo_cultura)
+    assert solo_cultura[0]["codigo"] == "ES"
+
+
+def test_similares_errores(cliente):
+    assert cliente.get("/api/similares/XX").status_code == 404
+    tw = cliente.get("/api/similares/TW")
+    assert tw.status_code == 404 and "Banco Mundial" in tw.json()["error"]["mensaje"]
+    r = cliente.get("/api/similares/AR", params={"peso_cultura": 2})
+    assert r.status_code == 422 and r.json()["error"]["detalles"][0]["campo"].endswith("peso_cultura")
