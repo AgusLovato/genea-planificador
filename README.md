@@ -18,6 +18,7 @@ No se reentrena nada: el servicio reproduce exactamente los segmentos, puntajes 
 | Dónde entrar | Mover los pesos del ranking y ver cómo cambian el orden, la robustez y las prioridades | `POST /api/ranking` |
 | Ficha de país | Segmento, estrategia de entrada, índices, por qué está en ese puesto y países puente | `GET /api/paises/{codigo}` |
 | ¿Qué pasa si…? | Cambiar datos de un país o cargar uno nuevo; lo que falta se imputa y se avisa | `POST /api/evaluar` |
+| Mercados parecidos | Para cualquier empresa: elegís tu país y ves los mercados más parecidos por perfil del consumidor y cercanía cultural, con el motivo de cada uno | `GET /api/similares/{codigo}` |
 | Tu apellido | En qué países aparece un apellido y cuáles son prioritarios para Genea | `GET /api/apellidos/{apellido}` |
 | Cómo funciona | Pesos teóricos de cada variable, embudo de selección del modelo, reglas y limitaciones | `GET /api/modelo` |
 
@@ -29,6 +30,7 @@ La documentación interactiva de todas las entradas y salidas está en `/docs` (
 genea/            lógica del modelo, sin nada de HTTP
   modelo.py       pipeline, ranking, sensibilidad, países puente, evaluación de países nuevos
   apellidos.py    buscador de apellidos
+  similares.py    mercados parecidos a un país de origen (perfil del consumidor y cercanía cultural)
   datos/          artefacto del modelo (JSON), datos de los países, pares ONU y apellidos
 api/              capa de servicio (FastAPI): esquemas, endpoints y manejo de errores
 web/              interfaz (HTML, CSS y JavaScript) que solo habla con la API
@@ -68,6 +70,9 @@ curl http://localhost:8000/api/paises/AR
 # Ranking con pesos propios (se normalizan para que sumen 1)
 curl -X POST http://localhost:8000/api/ranking -H "Content-Type: application/json" \
   -d '{"pesos": {"mercado": 0.6, "diversidad_origen": 0.1, "conectividad": 0.05, "poblacion": 0.2, "mayores65_pct": 0.05}}'
+
+# Los 5 mercados más parecidos a Argentina (peso_cultura: 0 solo perfil, 1 solo cultura)
+curl "http://localhost:8000/api/similares/AR?peso_cultura=0.5&n=5"
 
 # Escenario: Argentina con más PBI e internet (solo se envía lo que cambia)
 curl -X POST http://localhost:8000/api/evaluar -H "Content-Type: application/json" \
