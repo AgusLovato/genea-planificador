@@ -15,7 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from genea import BuscadorApellidos, DatosInvalidos, ModeloGenea, NoEncontrado
+from genea import BuscadorApellidos, BuscadorSimilares, DatosInvalidos, ModeloGenea, NoEncontrado
 
 from .esquemas import PedidoEvaluar, PedidoRanking, RespuestaError
 
@@ -29,6 +29,7 @@ async def ciclo_de_vida(app: FastAPI):
     modelo = ModeloGenea()
     ESTADO["modelo"] = modelo
     ESTADO["apellidos"] = BuscadorApellidos(modelo)
+    ESTADO["similares"] = BuscadorSimilares(modelo)
     log.info("Modelo %s cargado: %d países", modelo.version, len(modelo.codigos_ref))
     yield
     ESTADO.clear()
@@ -39,7 +40,8 @@ app = FastAPI(
     version="1.1",
     description="API del modelo de priorización de mercados por apellidos (Ciencia de Datos Aplicada, ITBA). "
                 "Segmenta países, arma el ranking de mercados con su sensibilidad a los pesos, "
-                "evalúa países nuevos o escenarios y busca en qué países aparece un apellido.",
+                "evalúa países nuevos o escenarios, busca en qué países aparece un apellido y, para cualquier empresa, "
+                "recomienda los mercados más parecidos a su país de origen.",
     lifespan=ciclo_de_vida,
     responses={404: {"model": RespuestaError}, 422: {"model": RespuestaError}},
 )
@@ -141,6 +143,15 @@ def apellido(apellido: str):
         return error(404, "no_encontrado", str(e), [{"campo": "apellido", "sugerencias": ESTADO["apellidos"].sugerencias(apellido)}])
     except ValueError as e:
         return error(422, "datos_invalidos", str(e))
+
+
+@app.get("/api/similares/{codigo}", tags=["mercados parecidos"], summary="Mercados más parecidos a un país de origen",
+         description="Para una empresa que ya opera en un país y quiere llevar su producto a otros. Combina el perfil del "
+                     "consumidor (ingreso, PBI per cápita, internet, urbanización y edad) con la cercanía cultural "
+                     "(apellidos compartidos y migración). `peso_cultura` va de 0 (solo perfil) a 1 (solo cultura).")
+def similares(codigo: str, peso_cultura: float = Query(0.5, ge=0, le=1, description="Peso de la cercanía cultural, 0 a 1"),
+              n: int = Query(10, ge=1, le=64, description="Cantidad de mercados a devolver")):
+    return ESTADO["similares"].buscar(codigo, peso_cultura, n)
 
 
 # ---------------------------------------------------------------- interfaz web
