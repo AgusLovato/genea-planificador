@@ -25,7 +25,7 @@ def ranking_tp3():
     return pd.read_csv(REF / "ranking_mercados.csv", index_col="country_code", keep_default_na=False)
 
 
-# ---------------------------------------------------------------- paridad con el TP3
+# Paridad con el TP3
 
 def test_reproduce_puntajes_y_puestos_del_tp3(modelo, ranking_tp3):
     r = modelo.ranking_base.loc[ranking_tp3.index]
@@ -63,7 +63,7 @@ def test_escenario_sin_cambios_da_el_mismo_resultado(modelo):
     assert r["avisos"] == [] and r["calidad"] == "alta"
 
 
-# ---------------------------------------------------------------- robustez ante datos nuevos
+# Robustez ante datos nuevos
 
 def test_region_conocida_imputa_con_mediana_regional(modelo):
     r = modelo.evaluar({}, base_codigo="TW")  # Taiwán no tiene datos del Banco Mundial
@@ -120,7 +120,7 @@ def test_pais_inexistente(modelo):
         modelo.evaluar({}, base_codigo="XX")
 
 
-# ---------------------------------------------------------------- pesos
+# Pesos
 
 def test_pesos_se_normalizan(modelo):
     w = modelo.validar_pesos({"mercado": 2, "diversidad_origen": 2, "conectividad": 2, "poblacion": 2, "mayores65_pct": 2})
@@ -145,7 +145,7 @@ def test_pesos_teoricos(modelo):
     assert abs(sum(p["peso_efectivo_en_puntaje"] for p in d["pesos_variables"]) - 1) < 1e-3
 
 
-# ---------------------------------------------------------------- apellidos
+# Apellidos
 
 def test_apellido_del_grupo(buscador):
     r = buscador.buscar("varela")
