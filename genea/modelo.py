@@ -1,21 +1,4 @@
-"""Lógica del modelo de priorización de mercados de Genea.
-
-Este módulo no sabe nada de HTTP: recibe datos de países, los valida, aplica el pipeline
-entrenado en el TP3 y devuelve resultados. La API (carpeta api/) solo traduce pedidos y
-respuestas. Así el mismo código sirve para la API, para los tests y para una notebook.
-
-Orden de preparación de un país nuevo (devolución del TP3, "robustez en datos nuevos"):
-    1. Validar tipos y rangos de cada variable.
-    2. Normalizar las categorías: el nivel de ingreso debe ser uno de los cuatro conocidos
-       (si viene un valor desconocido es un error); la región puede faltar o no estar entre
-       las 7 del entrenamiento (en ese caso se avisa y se usa la mediana global).
-    3. Codificar el ingreso en escala ordinal (0 a 3).
-    4. Aplicar log1p a las variables asimétricas, sobre los valores observados.
-    5. Imputar los faltantes, siempre en la escala ya transformada: primero la mediana de la
-       región del país; si la región falta o no se vio en el entrenamiento, la mediana global.
-       Cada imputación queda registrada como aviso.
-    6. Estandarizar con la media y el desvío aprendidos en el entrenamiento.
-"""
+"""Modelo de priorización de mercados de Genea (pipeline del TP3)."""
 from __future__ import annotations
 
 import json
@@ -136,7 +119,6 @@ class ModeloGenea:
         self.comp_ref = self._componentes(self.indices_ref, self.z_ref)
         self.ranking_base = self.ranking()
 
-    # ------------------------------------------------------------------ pipeline
 
     def _normalizar_ingreso(self, valor, avisos, detalles):
         if valor is None or (isinstance(valor, float) and math.isnan(valor)) or str(valor).strip() == "":
@@ -248,7 +230,6 @@ class ModeloGenea:
     def _componentes(self, indices: pd.DataFrame, z: pd.DataFrame) -> pd.DataFrame:
         return pd.concat([indices, z[["poblacion", "mayores65_pct"]]], axis=1)[COMPONENTES]
 
-    # ------------------------------------------------------------------ pesos y ranking
 
     def validar_pesos(self, pesos: dict | None) -> dict[str, float]:
         if pesos is None:
@@ -334,7 +315,6 @@ class ModeloGenea:
                 "segmento": seg, "nombre_segmento": self.art["segmentos"][str(seg)]["nombre"],
                 "aportes": {c: round(float(fila[f"aporte_{c}"]), 4) for c in COMPONENTES}}
 
-    # ------------------------------------------------------------------ consultas
 
     def puentes(self, codigo: str, n: int | None = None) -> list[dict]:
         cfg = self.art["puentes"]

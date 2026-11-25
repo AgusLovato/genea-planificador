@@ -1,18 +1,4 @@
-"""Mercados parecidos: para una empresa de cualquier rubro que ya opera en un país y quiere
-llevar su producto a otros, busca los países más parecidos al suyo.
-
-El parecido combina dos partes:
-  - Perfil del consumidor: nivel de ingreso, PBI per cápita, uso de internet, población urbana y
-    peso de los mayores de 65. Se comparan las variables ya estandarizadas por el pipeline del
-    TP3 (mismas medias y desvíos), así que una diferencia de 1 equivale a un desvío entre los 65
-    países. El parecido es exp(-d), con d la distancia cuadrática media entre los dos países.
-  - Cercanía cultural: afinidad de apellidos entre los dos países (la misma de los países puente)
-    y vínculo migratorio (migrantes entre ambos según la ONU 2024, en escala logarítmica y
-    dividido por el par con más migrantes de la base).
-
-El peso de cada parte lo elige el usuario. La población no entra en el parecido: se informa
-como tamaño de mercado, porque un país más chico o más grande puede ser igual de parecido.
-"""
+"""Mercados parecidos a un país de origen: perfil del consumidor y cercanía cultural."""
 from __future__ import annotations
 
 import math
