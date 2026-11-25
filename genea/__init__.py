@@ -1,5 +1,6 @@
 """Planificador de expansión de Genea: lógica del modelo (sin dependencias de la API)."""
 from .modelo import COMPONENTES, DatosInvalidos, ModeloGenea, NoEncontrado
 from .apellidos import BuscadorApellidos
+from .similares import BuscadorSimilares
 
-__all__ = ["ModeloGenea", "BuscadorApellidos", "DatosInvalidos", "NoEncontrado", "COMPONENTES"]
+__all__ = ["ModeloGenea", "BuscadorApellidos", "BuscadorSimilares", "DatosInvalidos", "NoEncontrado", "COMPONENTES"]
