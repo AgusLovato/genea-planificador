@@ -1,5 +1,4 @@
-/* Planificador de expansión Genea: interfaz web.
-   Toda la información sale de la API (/api/...): la interfaz no calcula nada del modelo. */
+// Interfaz web del planificador: todo lo pide a la API.
 "use strict";
 
 const API = "";  // misma URL que sirve la página
@@ -20,7 +19,7 @@ const segColor = (s) => `var(--seg${s})`;
 const chipP = (p) => `<span class="chip p${p}">Prioridad ${p}</span>`;
 const chipSeg = (s, nombre) => `<span class="seg" style="--c:${segColor(s)}">${esc(nombre)}</span>`;
 
-/* ---------------------------------------------------------------- API */
+// API
 async function api(ruta, opciones = {}) {
   const r = await fetch(API + ruta, { headers: { "Content-Type": "application/json" }, ...opciones });
   let cuerpo = null;
@@ -39,7 +38,7 @@ function cajaError(e) {
 }
 const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
-/* ---------------------------------------------------------------- tema (manual) */
+// Tema (manual)
 function aplicarTema(t) {
   document.documentElement.dataset.theme = t;
   $("#tema").setAttribute("aria-label", t === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
@@ -48,7 +47,7 @@ function aplicarTema(t) {
 $("#tema").addEventListener("click", () => aplicarTema(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 try { const t = localStorage.getItem("genea-tema"); if (t === "dark" || t === "light") aplicarTema(t); } catch (_) { /* nada */ }
 
-/* ---------------------------------------------------------------- navegación */
+// Navegación
 const VISTAS = ["ranking", "pais", "simulador", "parecidos", "apellido", "como"];
 function navegar() {
   const [vista, arg] = (location.hash.replace("#", "") || "ranking").split("/");
@@ -63,7 +62,7 @@ function navegar() {
 }
 window.addEventListener("hashchange", navegar);
 
-/* ---------------------------------------------------------------- dónde entrar */
+// Dónde entrar
 function armarPesos() {
   const nombres = ESTADO.modelo.nombres_componentes;
   ESTADO.pesos = { ...PRESETS["Base (TP3)"] };
@@ -139,7 +138,7 @@ $("#filtro-prioridad").addEventListener("click", (ev) => {
 $("#tabla-ranking").addEventListener("click", (ev) => { const tr = ev.target.closest("tr[data-cod]"); if (tr) location.hash = `#pais/${tr.dataset.cod}`; });
 $("#tabla-ranking").addEventListener("keydown", (ev) => { const tr = ev.target.closest("tr[data-cod]"); if (tr && ev.key === "Enter") location.hash = `#pais/${tr.dataset.cod}`; });
 
-/* ---------------------------------------------------------------- ficha */
+// Ficha
 function barraIndice(nombre, valor, centro) {
   const pos = (v) => 50 + Math.max(-3, Math.min(3, v)) / 3 * 50;
   const a = pos(Math.min(0, valor)), b = pos(Math.max(0, valor));
@@ -213,7 +212,7 @@ async function mostrarFicha(codigo) {
 }
 $("#sel-pais").addEventListener("change", (ev) => { location.hash = `#pais/${ev.target.value}`; });
 
-/* ---------------------------------------------------------------- simulador */
+// Simulador
 const GRUPOS = [
   ["Apellidos y origen", ["diversidad_origen", "n_familias_relevantes", "cuota_apellidos_transregionales", "paises_por_apellido_pond", "similitud_max"]],
   ["Mercado", ["pbi_pc_ppa", "internet_pct", "urbana_pct"]],
@@ -342,7 +341,7 @@ function pintarEvaluacion(r) {
       <p class="nota">Con los pesos elegidos en "Dónde entrar": ${ORDEN_COMP.map((c) => `${esc(ESTADO.modelo.nombres_componentes[c])} ${pct(ESTADO.pesos[c] / ORDEN_COMP.reduce((t, x) => t + ESTADO.pesos[x], 0))}`).join(", ")}.</p></div>`;
 }
 
-/* ---------------------------------------------------------------- mercados parecidos */
+// Mercados parecidos
 ESTADO.pesoCultura = 0.5;
 async function buscarParecidos() {
   const cod = $("#sel-origen").value || "AR", caja = $("#res-parecidos");
@@ -374,7 +373,7 @@ $("#enfoque-parecidos").addEventListener("click", (ev) => {
   buscarParecidos();
 });
 
-/* ---------------------------------------------------------------- apellido */
+// Apellido
 const sugerirApellido = debounce(async (texto) => {
   if (texto.trim().length < 2) return;
   try {
@@ -420,7 +419,7 @@ async function buscarApellido() {
   }
 }
 
-/* ---------------------------------------------------------------- cómo funciona */
+// Cómo funciona
 function armarComo() {
   const m = ESTADO.modelo, e = m.embudo_seleccion, nombres = m.nombres_componentes;
   const escalon = (txt, n, final = false) => `<div class="escalon${final ? " final" : ""}"><div><div class="txt">${esc(txt)}</div><div class="pista"><div class="relleno" style="width:${Math.max(2, 100 * n / e.total)}%"></div></div></div><b>${n}</b></div>`;
@@ -468,7 +467,7 @@ function armarComo() {
     </div>`;
 }
 
-/* ---------------------------------------------------------------- inicio */
+// Inicio
 async function iniciar() {
   try {
     const [modelo, paises] = await Promise.all([api("/api/modelo"), api("/api/paises")]);
