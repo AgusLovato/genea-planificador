@@ -1,5 +1,4 @@
-"""Entradas y salidas de la API (Pydantic). Los rangos válidos los controla genea/, que
-devuelve los errores en castellano; acá se definen los tipos y la documentación."""
+"""Esquemas de entrada y salida de la API."""
 from __future__ import annotations
 
 from typing import Optional, Union

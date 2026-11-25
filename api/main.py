@@ -1,8 +1,4 @@
-"""Capa de servicio: expone el modelo de Genea como API REST y sirve la interfaz web.
-
-Arranque local:  uvicorn api.main:app --reload
-Documentación interactiva de entradas y salidas: http://localhost:8000/docs
-"""
+"""API REST del planificador. Local: uvicorn api.main:app --reload"""
 from __future__ import annotations
 
 import logging
@@ -85,7 +81,6 @@ def M() -> ModeloGenea:
     return ESTADO["modelo"]
 
 
-# ---------------------------------------------------------------- endpoints
 
 @app.get("/api/health", tags=["servicio"], summary="Estado del servicio")
 def health():
@@ -154,7 +149,6 @@ def similares(codigo: str, peso_cultura: float = Query(0.5, ge=0, le=1, descript
     return ESTADO["similares"].buscar(codigo, peso_cultura, n)
 
 
-# ---------------------------------------------------------------- interfaz web
 
 @app.get("/", include_in_schema=False)
 def inicio():
